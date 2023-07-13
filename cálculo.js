@@ -1,9 +1,8 @@
 
 const base = document.getElementById("Base");
 const altura = document.getElementById("Altura");
-
+const figura =
 Atriangulo = (base * altura)/2
-
 
 /*  math.pi (pa sacar pi de gratis)
 Perímetro de un círculo:
