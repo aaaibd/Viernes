@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculadora de figuras</title>
+  <style>
+    .form-group {
+      margin-bottom: 10px;
+      color: brown;
+    }
+  </style>
+</head>
+<body>
+<script src="prueba.js"></script>
+  <h1>Calculadora de figuras</h1>
+  
+  <div class="form-group">
+    <label for="figure">Selecciona una figura:</label>
+    <select id="figure" onchange="toggleCalculations()">
+      <option value="">Seleccionar</option>
+      <option value="triangle">Triángulo</option>
+      <option value="circle">Círculo</option>
+      <option value="sphere">Esfera</option>
+    </select>
+  </div>
+  
+  <div id="triangle" class="form-group hidden">
+    <h2>Triángulo</h2>
+    <label for="triangleBase">Base:</label>
+    <input type="number" id="triangleBase">
+    <br>
+    <label for="triangleHeight">Altura:</label>
+    <input type="number" id="triangleHeight">
+    <br>
+    <button onclick="calculateTriangle()">Calcular</button>
+    <br>
+    <label for="triangleArea">Área:</label>
+    <input type="text" id="triangleArea" disabled>
+    <br>
+    <label for="trianglePerimeter">Perímetro:</label>
+    <input type="text" id="trianglePerimeter" disabled>
+  </div>
+  
+  <div id="circle" class="form-group hidden">
+    <h2>Círculo</h2>
+    <label for="circleRadius">Radio:</label>
+    <input type="number" id="circleRadius">
+    <br>
+    <button onclick="calculateCircle()">Calcular</button>
+    <br>
+    <label for="circleArea">Área:</label>
+    <input type="text" id="circleArea" disabled>
+    <br>
+    <label for="circlePerimeter">Perímetro:</label>
+    <input type="text" id="circlePerimeter" disabled>
+  </div>
+  
+  <div id="sphere" class="form-group hidden">
+    <h2>Esfera</h2>
+    <label for="sphereRadius">Radio:</label>
+    <input type="number" id="sphereRadius">
+    <br>
+    <button onclick="calculateSphere()">Calcular</button>
+    <br>
+    <label for="sphereVolume">Volumen:</label>
+    <input type="text" id="sphereVolume" disabled>
+    <br>
+    <label for="sphereSurfaceArea">Área de superficie:</label>
+    <input type="text" id="sphereSurfaceArea" disabled>
+  </div>
+
+  <script>
+    function toggleCalculations() {
+      var figure = document.getElementById("figure").value;
+      
+      document.getElementById("triangle").classList.add("hidden");
+      document.getElementById("circle").classList.add("hidden");
+      document.getElementById("sphere").classList.add("hidden");
+      
+      if (figure === "triangle") {
+        document.getElementById("triangle").classList.remove("hidden");
+      } else if (figure === "circle") {
+        document.getElementById("circle").classList.remove("hidden");
+      } else if (figure === "sphere") {
+        document.getElementById("sphere").classList.remove("hidden");
+      }
+    }
+    
+    function calculateTriangle() {
+      var base = parseFloat(document.getElementById("triangleBase").value);
+      var height = parseFloat(document.getElementById("triangleHeight").value);
+      
+      var area = (base * height) / 2;
+      var perimeter = base * 3;
+      
+      document.getElementById("triangleArea").value = area;
+      document.getElementById("trianglePerimeter").value = perimeter;
+    }
+    
+    function calculateCircle() {
+      var radius = parseFloat(document.getElementById("circleRadius").value);
+      
+      var area = Math.PI * radius * radius;
+      var perimeter = 2 * Math.PI * radius;
+      
+      document.getElementById("circleArea").value = area;
+      document.getElementById("circlePerimeter").value = perimeter;
+    }
+    
+    function calculateSphere() {
+      var radius = parseFloat(document.getElementById("sphereRadius").value);
+      
+      var volume = (4 / 3) * Math.PI * Math.pow(radius, 3);
+      var surfaceArea = 4 * Math.PI * Math.pow(radius, 2);
+      
+      document.getElementById("sphereVolume").value = volume;
+      document.getElementById("sphereSurfaceArea").value = surfaceArea;
+    }
+  </script>
+</body>
+</html>
